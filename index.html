@@ -53,7 +53,7 @@
 
     <script>
         function generateScreenshot() {
-
+            setTimeout(() => buildCanvas(), 0);
             setTimeout(() => {
                 html2canvas(document.getElementById('theCanvas'), {
                     logging: true,
@@ -64,8 +64,6 @@
                 }).then(function (canvas) {
                     let data = canvas.toDataURL('image/png', 0.9)
                     let src = encodeURI(data);
-
-                    // document.getElementById('screenshot').src = src;
                     const link = document.createElement('a')
                     link.href = src
                     link.download = 'textgradient.png'
@@ -76,8 +74,6 @@
                 });
             }, 1000);
         }
-
-
     </script>
 
 </body>

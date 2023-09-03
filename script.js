@@ -1,14 +1,14 @@
 //Some classes and html functions need to determine a constant
-var css = document.querySelector(".codess"); // color code
-var color1 = document.querySelector(".color1"); // 1st color
-var color2 = document.querySelector(".color2"); // 2nd color
-var bodys = document.getElementById("gradient"); // color display
-var linearDirection = document.getElementsByName("toDirection")[0]; //Select box
-var cancel = document.querySelector(".cancel");
+let css = document.querySelector(".codess"); // color code
+let color1 = document.querySelector(".color1"); // 1st color
+let color2 = document.querySelector(".color2"); // 2nd color
+let bodys = document.getElementById("gradient"); // color display
+let linearDirection = document.getElementsByName("toDirection")[0]; //Select box
+let cancel = document.querySelector(".cancel");
 //displays default CSS RGBA values for linear-gradient
 
 function currentSettings() {
-  var CSSprop = window
+  let CSSprop = window
     .getComputedStyle(bodys, null)
     .getPropertyValue("background-image");
   // console.log(CSSprop)
@@ -39,7 +39,7 @@ color1.addEventListener("input", returnColor);
 color2.addEventListener("input", returnColor);
 
 cancel.style.display = "none";
-var fileTag = document.getElementById("filetag"),
+let fileTag = document.getElementById("filetag"),
   preview = document.getElementById("preview");
 
 fileTag.addEventListener("change", function () {
@@ -47,7 +47,7 @@ fileTag.addEventListener("change", function () {
 });
 
 function changeImage(input) {
-  var reader;
+  let reader;
 
   if (input.files && input.files[0]) {
     reader = new FileReader();
@@ -66,7 +66,7 @@ function hidestuff() {
   preview.style.display = "none";
 }
 
-var up = false,
+let up = false,
   right = false,
   down = false,
   left = false,
@@ -103,7 +103,7 @@ function release(e) {
   }
 }
 function gameLoop() {
-  var div = document.querySelector("#move");
+  let div = document.querySelector("#move");
   if (up) {
     y = y - 20;
   }
@@ -121,3 +121,20 @@ function gameLoop() {
   window.requestAnimationFrame(gameLoop);
 }
 window.requestAnimationFrame(gameLoop);
+
+let buildCanvas = () => {
+  const c = document.getElementById("theCanvas");
+  const ctx = c.getContext("2d");
+  ctx.font = "bold 110px 'Montserrat', sans-serif";
+
+  // Create gradient
+  let gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+  gradient.addColorStop("0", "#FC558F");
+  gradient.addColorStop("1.0", "#FF8A83");
+
+  // Fill with gradient
+  ctx.fillStyle = gradient;
+  ctx.fillText("Sweet Candy", 10, 90);
+};
+
+buildCanvas();

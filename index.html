@@ -10,7 +10,7 @@
     <script src="blob.js"></script>
     <script src="canvas.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script> -->
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 
@@ -18,10 +18,8 @@
 
 <body class="random-color">
     <img src="pokedex.png" alt="" height="30px">
-
     <div class="display" id="gradient" contenteditable="true">Sweet Candy</div>
-
-
+    <canvas id="theCanvas" width="1024" height="150" style="border:1px solid grey"></canvas>
     <div class="codess" contenteditable="true" spellcheck="false"></div>
 
     <input type="color" class="color1" name="color1" value="#FC558F">
@@ -52,23 +50,25 @@
 
     <script src="script.js"></script>
     <script src="download.js"></script>
+
     <script>
         function generateScreenshot() {
 
             setTimeout(() => {
-                html2canvas(document.getElementById('gradient'), {
+                html2canvas(document.getElementById('theCanvas'), {
                     logging: true,
                     profile: true,
                     scale: 2,
-                    useCORS: true
+                    useCORS: true,
+                    backgroundColor: null,
                 }).then(function (canvas) {
-                    var data = canvas.toDataURL('image/png', 0.9)
-                    var src = encodeURI(data);
+                    let data = canvas.toDataURL('image/png', 0.9)
+                    let src = encodeURI(data);
 
                     // document.getElementById('screenshot').src = src;
                     const link = document.createElement('a')
                     link.href = src
-                    link.download = 'gradient.png'
+                    link.download = 'textgradient.png'
                     document.body.appendChild(link)
                     link.click()
                     document.body.removeChild(link)

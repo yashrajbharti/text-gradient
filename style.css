@@ -148,8 +148,9 @@ body {
   font-weight: bold;
   box-shadow: 0 0 20px rgba(1, 1, 1, 0.35);
   background-image: linear-gradient(to right, #FC558F, #FF8A83);
-  color: transparent;
+  -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  filter: drop-shadow(0 5px rgba(1, 1, 1, 0.35));
   background-clip: text;
   caret-color: #FC558F;
 }

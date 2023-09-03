@@ -26,17 +26,11 @@ function returnColor() {
     "," +
     color2.value +
     ")";
-  buildCanvas();
   currentSettings();
 }
 css.addEventListener("input", () => {
   bodys.style.backgroundImage = css.textContent;
-  buildCanvas();
 });
-bodys.addEventListener("input", () => {
-  buildCanvas();
-});
-
 document.querySelector('select[name="toDirection"]').onchange = returnColor;
 color1.addEventListener("input", returnColor);
 color2.addEventListener("input", returnColor);

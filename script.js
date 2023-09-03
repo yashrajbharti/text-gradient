@@ -131,20 +131,26 @@ let buildCanvas = () => {
     .getPropertyValue("background-image");
 
   let canvasarray = canvasColors.split(",");
-  let canvasColor1 = canvasarray[1] + canvasarray[2] + canvasarray[3];
+  let canvasColor1 =
+    canvasarray[1] + "," + canvasarray[2] + "," + canvasarray[3];
+  let canvasColor2 =
+    canvasarray[4] + "," + canvasarray[5] + "," + canvasarray[6].slice(0, -1);
 
-  console.log(canvasColor1);
+  console.log(canvasColor2);
 
   const c = document.getElementById("theCanvas");
   const ctx = c.getContext("2d");
+  // c.clearRect(0, 0, ctx.width, ctx.height);
+  // ctx.height = bodys.clientHeight;
+  // ctx.width = bodys.clientWidth;
   ctx.font = "bold 110px 'Montserrat', sans-serif";
 
   // Create gradient
   let gradient = ctx.createLinearGradient(0, 0, c.width, 0);
-  gradient.addColorStop("0", "#FC558F");
+  gradient.addColorStop("0", canvasColor1);
   gradient.addColorStop("1.0", "#FF8A83");
 
   // Fill with gradient
   ctx.fillStyle = gradient;
-  ctx.fillText("Sweet Candy", 10, 90);
+  ctx.fillText(bodys.textContent, 10, 90);
 };

@@ -11,7 +11,6 @@ function currentSettings() {
   let CSSprop = window
     .getComputedStyle(bodys, null)
     .getPropertyValue("background-image");
-  // console.log(CSSprop)
   css.textContent = CSSprop;
 }
 
@@ -27,11 +26,15 @@ function returnColor() {
     "," +
     color2.value +
     ")";
-
+  buildCanvas();
   currentSettings();
 }
 css.addEventListener("input", () => {
   bodys.style.backgroundImage = css.textContent;
+  buildCanvas();
+});
+bodys.addEventListener("input", () => {
+  buildCanvas();
 });
 
 document.querySelector('select[name="toDirection"]').onchange = returnColor;
@@ -123,6 +126,15 @@ function gameLoop() {
 window.requestAnimationFrame(gameLoop);
 
 let buildCanvas = () => {
+  let canvasColors = window
+    .getComputedStyle(bodys, null)
+    .getPropertyValue("background-image");
+
+  let canvasarray = canvasColors.split(",");
+  let canvasColor1 = canvasarray[1] + canvasarray[2] + canvasarray[3];
+
+  console.log(canvasColor1);
+
   const c = document.getElementById("theCanvas");
   const ctx = c.getContext("2d");
   ctx.font = "bold 110px 'Montserrat', sans-serif";
@@ -136,5 +148,3 @@ let buildCanvas = () => {
   ctx.fillStyle = gradient;
   ctx.fillText("Sweet Candy", 10, 90);
 };
-
-buildCanvas();

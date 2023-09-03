@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Gradient</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="blob.js"></script>
+    <script src="canvas.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script> -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+
+</head>
+
+<body class="random-color">
+    <img src="pokedex.png" alt="" height="30px">
+
+    <div class="display" id="gradient" contenteditable="true">Sweet Candy</div>
+
+
+    <div class="codess" contenteditable="true" spellcheck="false"></div>
+
+    <input type="color" class="color1" name="color1" value="#FC558F">
+    <input type="color" class="color2" name="color2" value="#FF8A83">
+    <select name="toDirection">
+        <option value="to right"> to right</option>
+        <option value="to right bottom"> to right bottom</option>
+        <option value="to right top"> to right top</option>
+        <option value="to left"> to left</option>
+        <option value="to left bottom"> to left bottom</option>
+        <option value="to left top"> to left top</option>
+        <option value="to bottom"> to bottom</option>
+        <option value="to top"> to top</option>
+    </select>
+
+    <a class="btn btn-success btn-gradient" href="javascript:void(0);"
+        onclick="generateScreenshot();"><span>Download</span></a>
+    <br>
+    <input type="file" id="filetag">
+    <div id="move">
+        <img src="cancel.png" alt="" width="50px" class="cancel" onclick="hidestuff();">
+        <img src="" id="preview">
+
+    </div>
+    <h1 style="padding-bottom: 50px;
+        margin-bottom: 50px;"> &nbsp;</h1>
+    <div><img src="" id="screenshot"></div>
+
+    <script src="script.js"></script>
+    <script src="download.js"></script>
+    <script>
+        function generateScreenshot() {
+
+            setTimeout(() => {
+                html2canvas(document.getElementById('gradient'), {
+                    logging: true,
+                    profile: true,
+                    scale: 2,
+                    useCORS: true
+                }).then(function (canvas) {
+                    var data = canvas.toDataURL('image/png', 0.9)
+                    var src = encodeURI(data);
+
+                    // document.getElementById('screenshot').src = src;
+                    const link = document.createElement('a')
+                    link.href = src
+                    link.download = 'gradient.png'
+                    document.body.appendChild(link)
+                    link.click()
+                    document.body.removeChild(link)
+                    document.getElementById('size').innerHTML = src.length + ' bytes';
+                });
+            }, 1000);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
